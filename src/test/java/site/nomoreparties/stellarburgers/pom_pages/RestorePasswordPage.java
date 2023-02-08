@@ -4,23 +4,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
- * Описание страницы регистрации пользователя
+ * Описание страницы восстановления пароля
  */
-
-public class RegisterPage {
+public class RestorePasswordPage {
     private WebDriver driver;
 
-    public RegisterPage(WebDriver driver) {
+    public RestorePasswordPage(WebDriver driver) {
         this.driver = driver;
     }
+
     /* POM локаторы */
     //Ссылка "Войти"
-    private final By loginLink = By.xpath("//*[starts-with(@href, '/login')]");
+    private final By loginLink = By.xpath(".//*[starts-with(@href, '/login')]");
+
 
     /* POM методы */
     public void goToLoginPage() {
         driver.findElement(loginLink).click();
     }
-
-    /* POM чеки */
 }

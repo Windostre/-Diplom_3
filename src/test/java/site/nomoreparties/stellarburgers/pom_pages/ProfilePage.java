@@ -6,10 +6,10 @@ import org.openqa.selenium.WebDriver;
  * Описание страницы личного кабинет пользователя (доступно только для авторизованнх пользователей)
  */
 
-public class UserPersonalPage {
+public class ProfilePage {
     private WebDriver driver;
 
-    public UserPersonalPage(WebDriver driver) {
+    public ProfilePage(WebDriver driver) {
         this.driver = driver;
     }
 }
