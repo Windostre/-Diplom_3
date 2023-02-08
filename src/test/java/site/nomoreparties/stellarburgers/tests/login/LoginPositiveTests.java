@@ -1,4 +1,4 @@
-package site.nomoreparties.stellarburgers.tests;
+package site.nomoreparties.stellarburgers.tests.login;
 
 import org.junit.After;
 import org.junit.Before;
@@ -75,7 +75,7 @@ public class LoginPositiveTests {
     @Test
     public void loginViaForgotPasswordPageSuccess() {
         mainPage.goToLoginPage();
-        loginPage.goToRestorePasswordPage(); 
+        loginPage.goToRestorePasswordPage();
         restorePasswordPage.goToLoginPage();
         loginPage.logIn(email, password);
 
