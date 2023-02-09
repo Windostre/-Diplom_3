@@ -3,6 +3,7 @@ package site.nomoreparties.stellarburgers.helpers;
 import org.junit.rules.ExternalResource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
@@ -10,7 +11,7 @@ import java.time.Duration;
 public class BrowserRules extends ExternalResource {
 
     public static final String CHROME = "chrome";
-    public static final String FIRE_FOX = "ff";
+    public static final String YANDEX = "yandex";
 
     private WebDriver driver;
     private String browser;
@@ -28,8 +29,10 @@ public class BrowserRules extends ExternalResource {
     protected void before() throws Throwable {
         if(CHROME.equals(browser)) {
             driver = new ChromeDriver();
-        } else if (FIRE_FOX.equals(browser)) {
-            driver = new FirefoxDriver();
+        } else if (YANDEX.equals(browser)) {
+            ChromeOptions options = new ChromeOptions();
+            options.setBinary("C:\\Users\\windo\\AppData\\Local\\Yandex\\YandexBrowser\\Application\\browser.exe");
+            driver = new ChromeDriver(options);
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
