@@ -31,8 +31,6 @@ public class LoginNegativeParamTests {
         Utils utils = new Utils();
         return utils.generateRandomPassword();
     }
-    private MainPage mainPage;
-    private LoginPage loginPage;
     @Parameterized.Parameter(0)
     public String comment;
     @Parameterized.Parameter(1)
@@ -54,8 +52,8 @@ public class LoginNegativeParamTests {
 
     @Test
     public void loginFailWhenInvalidDataProvided(){
-        mainPage = new MainPage(browserRules.getDriver());
-        loginPage = new LoginPage(browserRules.getDriver());
+        MainPage mainPage = new MainPage(browserRules.getDriver());
+        LoginPage loginPage = new LoginPage(browserRules.getDriver());
 
         mainPage.open()
                 .goToLoginPage();

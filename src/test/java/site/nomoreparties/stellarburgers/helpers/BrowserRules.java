@@ -33,6 +33,7 @@ public class BrowserRules extends ExternalResource {
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
+
     }
 
     @Override

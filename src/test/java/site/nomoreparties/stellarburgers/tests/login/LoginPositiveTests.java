@@ -19,19 +19,24 @@ import static org.junit.Assert.*;
 public class LoginPositiveTests {
     @Rule
     public BrowserRules browserRules = new BrowserRules(BrowserRules.CHROME);
-    MainPage mainPage;
-    LoginPage loginPage;
-    RegisterPage registerPage;
-    RestorePasswordPage restorePasswordPage;
+    private MainPage mainPage;
+    private LoginPage loginPage;
+    private RegisterPage registerPage;
+    private RestorePasswordPage restorePasswordPage;
+
+    @Before
+    public void setUp() {
+        mainPage = new MainPage(browserRules.getDriver());
+        loginPage = new LoginPage(browserRules.getDriver());
+        registerPage = new RegisterPage(browserRules.getDriver());
+        restorePasswordPage = new RestorePasswordPage(browserRules.getDriver());
+    }
+
     private String existingEmail = "some_client@mail.com";
     private String existingPassword = "123456";
 
     @Test
     public void loginViaUserProfileSuccess() {
-        mainPage = new MainPage(browserRules.getDriver());
-        loginPage = new LoginPage(browserRules.getDriver());
-        registerPage = new RegisterPage(browserRules.getDriver());
-        restorePasswordPage = new RestorePasswordPage(browserRules.getDriver());
         mainPage.open()
                 .clickUserProfile();
 
@@ -45,10 +50,6 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaSignInButtonSuccess() {
-        mainPage = new MainPage(browserRules.getDriver());
-        loginPage = new LoginPage(browserRules.getDriver());
-        registerPage = new RegisterPage(browserRules.getDriver());
-        restorePasswordPage = new RestorePasswordPage(browserRules.getDriver());
         mainPage.open()
                 .goToLoginPage();
         loginPage.logIn(existingEmail, existingPassword);
@@ -59,10 +60,6 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaRegistrationFormSuccess() {
-        mainPage = new MainPage(browserRules.getDriver());
-        loginPage = new LoginPage(browserRules.getDriver());
-        registerPage = new RegisterPage(browserRules.getDriver());
-        restorePasswordPage = new RestorePasswordPage(browserRules.getDriver());
         mainPage.open()
                 .goToLoginPage();
         loginPage.goToRegisterPage();
@@ -75,10 +72,6 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaForgotPasswordPageSuccess() {
-        mainPage = new MainPage(browserRules.getDriver());
-        loginPage = new LoginPage(browserRules.getDriver());
-        registerPage = new RegisterPage(browserRules.getDriver());
-        restorePasswordPage = new RestorePasswordPage(browserRules.getDriver());
         mainPage.open()
                 .goToLoginPage();
         loginPage.goToRestorePasswordPage();
