@@ -2,9 +2,11 @@ package site.nomoreparties.stellarburgers.tests.login;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import site.nomoreparties.stellarburgers.helpers.BrowserRules;
 import site.nomoreparties.stellarburgers.pom_pages.LoginPage;
 import site.nomoreparties.stellarburgers.pom_pages.MainPage;
 import site.nomoreparties.stellarburgers.pom_pages.RegisterPage;
@@ -15,7 +17,8 @@ import java.time.Duration;
 import static org.junit.Assert.*;
 
 public class LoginPositiveTests {
-    private WebDriver driver;
+    @Rule
+    public BrowserRules browserRules = new BrowserRules(BrowserRules.CHROME);
     MainPage mainPage;
     LoginPage loginPage;
     RegisterPage registerPage;
@@ -23,25 +26,12 @@ public class LoginPositiveTests {
     private String existingEmail = "some_client@mail.com";
     private String existingPassword = "123456";
 
-
-    @Before
-    public void setUp() {
-        driver = new ChromeDriver();
-        mainPage = new MainPage(driver);
-        loginPage = new LoginPage(driver);
-        registerPage = new RegisterPage(driver);
-        restorePasswordPage = new RestorePasswordPage(driver);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    }
-
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
-
     @Test
     public void loginViaUserProfileSuccess() {
+        mainPage = new MainPage(browserRules.getDriver());
+        loginPage = new LoginPage(browserRules.getDriver());
+        registerPage = new RegisterPage(browserRules.getDriver());
+        restorePasswordPage = new RestorePasswordPage(browserRules.getDriver());
         mainPage.open()
                 .clickUserProfile();
 
@@ -55,6 +45,10 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaSignInButtonSuccess() {
+        mainPage = new MainPage(browserRules.getDriver());
+        loginPage = new LoginPage(browserRules.getDriver());
+        registerPage = new RegisterPage(browserRules.getDriver());
+        restorePasswordPage = new RestorePasswordPage(browserRules.getDriver());
         mainPage.open()
                 .goToLoginPage();
         loginPage.logIn(existingEmail, existingPassword);
@@ -65,6 +59,10 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaRegistrationFormSuccess() {
+        mainPage = new MainPage(browserRules.getDriver());
+        loginPage = new LoginPage(browserRules.getDriver());
+        registerPage = new RegisterPage(browserRules.getDriver());
+        restorePasswordPage = new RestorePasswordPage(browserRules.getDriver());
         mainPage.open()
                 .goToLoginPage();
         loginPage.goToRegisterPage();
@@ -77,6 +75,10 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaForgotPasswordPageSuccess() {
+        mainPage = new MainPage(browserRules.getDriver());
+        loginPage = new LoginPage(browserRules.getDriver());
+        registerPage = new RegisterPage(browserRules.getDriver());
+        restorePasswordPage = new RestorePasswordPage(browserRules.getDriver());
         mainPage.open()
                 .goToLoginPage();
         loginPage.goToRestorePasswordPage();

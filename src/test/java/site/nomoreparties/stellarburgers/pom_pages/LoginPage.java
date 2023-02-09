@@ -32,7 +32,7 @@ public class LoginPage {
 
 
     /* POM методы */
-    public void logIn(String email, String password) {
+    public LoginPage logIn(String email, String password) {
         driver.findElement(emailInput).click();
         driver.findElement(emailInput).clear();
         driver.findElement(emailInput).sendKeys(email);
@@ -40,15 +40,18 @@ public class LoginPage {
         driver.findElement(passwordInput).clear();
         driver.findElement(passwordInput).sendKeys(password);
         driver.findElement(enterButton).click();
+        return this;
 
     }
 
-    public void goToRegisterPage() {
+    public LoginPage goToRegisterPage() {
         driver.findElement(registerLink).click();
+        return this;
     }
 
-    public void goToRestorePasswordPage() {
+    public LoginPage goToRestorePasswordPage() {
         driver.findElement(restorePasswordLink).click();
+        return this;
     }
 
     /* POM чеки */

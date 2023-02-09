@@ -2,11 +2,13 @@ package site.nomoreparties.stellarburgers.tests.login;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import site.nomoreparties.stellarburgers.helpers.BrowserRules;
 import site.nomoreparties.stellarburgers.helpers.Utils;
 import site.nomoreparties.stellarburgers.pom_pages.LoginPage;
 import site.nomoreparties.stellarburgers.pom_pages.MainPage;
@@ -18,7 +20,9 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
 public class LoginNegativeParamTests {
-    WebDriver driver = new ChromeDriver();
+    @Rule
+    public BrowserRules browserRules = new BrowserRules(BrowserRules.CHROME);
+
     private static String randomEmail() {
         Utils utils = new Utils();
         return utils.generateRandomEmail();
@@ -48,22 +52,11 @@ public class LoginNegativeParamTests {
 
     }
 
-    @Before
-    public void setUp() {
-        driver = new ChromeDriver();
-        mainPage = new MainPage(driver);
-        loginPage = new LoginPage(driver);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    }
-
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
-
     @Test
     public void loginFailWhenInvalidDataProvided(){
+        mainPage = new MainPage(browserRules.getDriver());
+        loginPage = new LoginPage(browserRules.getDriver());
+
         mainPage.open()
                 .goToLoginPage();
         loginPage
