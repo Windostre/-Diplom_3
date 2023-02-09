@@ -55,7 +55,6 @@ public class LoginNegativeParamTests {
         loginPage = new LoginPage(driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.get("https://stellarburgers.nomoreparties.site/");
     }
 
     @After
@@ -65,6 +64,7 @@ public class LoginNegativeParamTests {
 
     @Test
     public void loginFailWhenInvalidDataProvided(){
+        mainPage.open();
         mainPage.goToLoginPage();
         loginPage.logIn(email,password);
 

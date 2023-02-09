@@ -33,7 +33,6 @@ public class LoginPositiveTests {
         restorePasswordPage = new RestorePasswordPage(driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.get("https://stellarburgers.nomoreparties.site/");
     }
 
     @After
@@ -43,6 +42,7 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaUserProfileSuccess() {
+        mainPage.open();
         mainPage.goToUserProfile();
         if(loginPage.isCurrentPositionLoginPage()) {
             loginPage.logIn(existingEmail, existingPassword);

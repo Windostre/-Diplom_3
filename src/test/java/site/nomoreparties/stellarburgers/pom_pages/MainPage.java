@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
  */
 
 public class MainPage {
+    private String url = "https://stellarburgers.nomoreparties.site/";
     private WebDriver driver;
 
     public MainPage(WebDriver driver) {
@@ -25,6 +26,9 @@ public class MainPage {
     private final By signInButton = By.xpath(".//button[text()='Войти в аккаунт']");
 
     /* POM методы */
+    public void open() {
+        driver.get(url);
+    }
     public void goToUserProfile() {
         driver.findElement(profileButton).click();
     }
@@ -38,7 +42,6 @@ public class MainPage {
     public boolean isCurrentPositionMainPageWhenLoggedIn(){
         try {
             driver.findElement(makeOrderButton);
-            //driver.findElement(makeBurgerHeader);
             return true;
         } catch (NoSuchElementException ex) {
             return false;
