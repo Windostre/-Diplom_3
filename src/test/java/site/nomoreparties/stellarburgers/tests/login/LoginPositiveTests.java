@@ -20,8 +20,8 @@ public class LoginPositiveTests {
     LoginPage loginPage;
     RegisterPage registerPage;
     RestorePasswordPage restorePasswordPage;
-    private String email = "some_client@mail.com";
-    private String password = "123456";
+    private String existingEmail = "some_client@mail.com";
+    private String existingPassword = "123456";
 
 
     @Before
@@ -45,7 +45,7 @@ public class LoginPositiveTests {
     public void loginViaUserProfileSuccess() {
         mainPage.goToUserProfile();
         if(loginPage.isCurrentPositionLoginPage()) {
-            loginPage.logIn(email, password);
+            loginPage.logIn(existingEmail, existingPassword);
         }
 
         assertTrue(mainPage.isCurrentPositionMainPageWhenLoggedIn());
@@ -55,7 +55,7 @@ public class LoginPositiveTests {
     @Test
     public void loginViaSignInButtonSuccess() {
         mainPage.goToLoginPage();
-        loginPage.logIn(email, password);
+        loginPage.logIn(existingEmail, existingPassword);
 
         assertTrue(mainPage.isCurrentPositionMainPageWhenLoggedIn());
 
@@ -66,7 +66,7 @@ public class LoginPositiveTests {
         mainPage.goToLoginPage();
         loginPage.goToRegisterPage();
         registerPage.goToLoginPage();
-        loginPage.logIn(email, password);
+        loginPage.logIn(existingEmail, existingPassword);
 
         assertTrue(mainPage.isCurrentPositionMainPageWhenLoggedIn());
 
@@ -77,7 +77,7 @@ public class LoginPositiveTests {
         mainPage.goToLoginPage();
         loginPage.goToRestorePasswordPage();
         restorePasswordPage.goToLoginPage();
-        loginPage.logIn(email, password);
+        loginPage.logIn(existingEmail, existingPassword);
 
         assertTrue(mainPage.isCurrentPositionMainPageWhenLoggedIn());
 
