@@ -64,9 +64,10 @@ public class LoginNegativeParamTests {
 
     @Test
     public void loginFailWhenInvalidDataProvided(){
-        mainPage.open();
-        mainPage.goToLoginPage();
-        loginPage.logIn(email,password);
+        mainPage.open()
+                .goToLoginPage();
+        loginPage
+                .logIn(email,password);
 
         assertTrue(loginPage.isCurrentPositionLoginPage());
         assertFalse(mainPage.isCurrentPositionMainPageWhenLoggedIn());

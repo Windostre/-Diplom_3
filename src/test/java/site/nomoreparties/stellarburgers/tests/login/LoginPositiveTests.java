@@ -42,8 +42,9 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaUserProfileSuccess() {
-        mainPage.open();
-        mainPage.goToUserProfile();
+        mainPage.open()
+                .clickUserProfile();
+
         if(loginPage.isCurrentPositionLoginPage()) {
             loginPage.logIn(existingEmail, existingPassword);
         }
@@ -54,7 +55,8 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaSignInButtonSuccess() {
-        mainPage.goToLoginPage();
+        mainPage.open()
+                .goToLoginPage();
         loginPage.logIn(existingEmail, existingPassword);
 
         assertTrue(mainPage.isCurrentPositionMainPageWhenLoggedIn());
@@ -63,7 +65,8 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaRegistrationFormSuccess() {
-        mainPage.goToLoginPage();
+        mainPage.open()
+                .goToLoginPage();
         loginPage.goToRegisterPage();
         registerPage.goToLoginPage();
         loginPage.logIn(existingEmail, existingPassword);
@@ -74,7 +77,8 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaForgotPasswordPageSuccess() {
-        mainPage.goToLoginPage();
+        mainPage.open()
+                .goToLoginPage();
         loginPage.goToRestorePasswordPage();
         restorePasswordPage.goToLoginPage();
         loginPage.logIn(existingEmail, existingPassword);
