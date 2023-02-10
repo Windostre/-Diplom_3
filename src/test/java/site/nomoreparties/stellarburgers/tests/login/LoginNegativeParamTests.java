@@ -1,19 +1,13 @@
 package site.nomoreparties.stellarburgers.tests.login;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import site.nomoreparties.stellarburgers.helpers.BrowserRules;
 import site.nomoreparties.stellarburgers.helpers.Utils;
 import site.nomoreparties.stellarburgers.pom_pages.LoginPage;
 import site.nomoreparties.stellarburgers.pom_pages.MainPage;
-
-import java.time.Duration;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

@@ -6,10 +6,10 @@ import org.openqa.selenium.WebDriver;
 /**
  * Описание страницы восстановления пароля
  */
-public class RestorePasswordPage {
+public class ForgotPasswordPage {
     private WebDriver driver;
 
-    public RestorePasswordPage(WebDriver driver) {
+    public ForgotPasswordPage(WebDriver driver) {
         this.driver = driver;
     }
 

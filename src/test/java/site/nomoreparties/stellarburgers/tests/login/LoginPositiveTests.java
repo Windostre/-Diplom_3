@@ -9,7 +9,7 @@ import site.nomoreparties.stellarburgers.model.UserData;
 import site.nomoreparties.stellarburgers.pom_pages.LoginPage;
 import site.nomoreparties.stellarburgers.pom_pages.MainPage;
 import site.nomoreparties.stellarburgers.pom_pages.RegisterPage;
-import site.nomoreparties.stellarburgers.pom_pages.RestorePasswordPage;
+import site.nomoreparties.stellarburgers.pom_pages.ForgotPasswordPage;
 
 import static org.junit.Assert.*;
 
@@ -19,7 +19,7 @@ public class LoginPositiveTests {
     private MainPage mainPage;
     private LoginPage loginPage;
     private RegisterPage registerPage;
-    private RestorePasswordPage restorePasswordPage;
+    private ForgotPasswordPage forgotPasswordPage;
     private Utils utils = new Utils();
     private UserData userData;
 
@@ -28,7 +28,7 @@ public class LoginPositiveTests {
         mainPage = new MainPage(browserRules.getDriver());
         loginPage = new LoginPage(browserRules.getDriver());
         registerPage = new RegisterPage(browserRules.getDriver());
-        restorePasswordPage = new RestorePasswordPage(browserRules.getDriver());
+        forgotPasswordPage = new ForgotPasswordPage(browserRules.getDriver());
         userData = utils.defaultLoginData();
     }
 
@@ -72,7 +72,7 @@ public class LoginPositiveTests {
         mainPage.open()
                 .goToLoginPage();
         loginPage.goToRestorePasswordPage();
-        restorePasswordPage.goToLoginPage();
+        forgotPasswordPage.goToLoginPage();
         loginPage.logIn(userData);
 
         assertTrue(mainPage.isCurrentPositionMainPageWhenLoggedIn());
