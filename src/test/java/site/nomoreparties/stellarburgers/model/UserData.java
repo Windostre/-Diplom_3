@@ -3,17 +3,16 @@ package site.nomoreparties.stellarburgers.model;
 import lombok.*;
 
 /**
- * Описание структуры данных пользователя пользователя
+ * Описание структуры данных пользователя
  */
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+@Builder
+@ToString
 public class UserData {
     private String email;
-
     private String password;
-
     private String name;
 
 }

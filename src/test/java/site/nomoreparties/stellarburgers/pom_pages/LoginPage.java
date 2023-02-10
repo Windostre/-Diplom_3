@@ -3,6 +3,7 @@ package site.nomoreparties.stellarburgers.pom_pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import site.nomoreparties.stellarburgers.model.UserData;
 
 /**
  * Описание главной страницы авторизации пользователя
@@ -32,13 +33,24 @@ public class LoginPage {
 
 
     /* POM методы */
-    public LoginPage logIn(String email, String password) {
+    public LoginPage logIn(UserData userData) {
+        driver.findElement(emailInput).click();
+        driver.findElement(emailInput).clear();
+        driver.findElement(emailInput).sendKeys(userData.getEmail());
+        driver.findElement(passwordInput).click();
+        driver.findElement(passwordInput).clear();
+        driver.findElement(passwordInput).sendKeys(userData.getPassword());
+        driver.findElement(enterButton).click();
+        return this;
+
+    }
+    public LoginPage logInString(String email, String password) {
         driver.findElement(emailInput).click();
         driver.findElement(emailInput).clear();
         driver.findElement(emailInput).sendKeys(email);
         driver.findElement(passwordInput).click();
         driver.findElement(passwordInput).clear();
-        driver.findElement(passwordInput).sendKeys(password);
+        driver.findElement(passwordInput).sendKeys(email);
         driver.findElement(enterButton).click();
         return this;
 

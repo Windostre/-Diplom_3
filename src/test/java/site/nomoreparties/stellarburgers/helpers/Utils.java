@@ -11,6 +11,15 @@ public class Utils {
      */
     Random random = new Random();
     Faker faker = new Faker();
+    public final String DEFAULT_EMAIL = "some_client@mail.com";
+    public final String DEFAULT_PASSWORD = "123456";
+
+    public UserData defaultLoginData() {
+        return UserData.builder()
+                .email(DEFAULT_EMAIL)
+                .password(DEFAULT_PASSWORD)
+                .build();
+    }
 
     public UserData generateRandomUser() {
         String email = generateRandomEmail();

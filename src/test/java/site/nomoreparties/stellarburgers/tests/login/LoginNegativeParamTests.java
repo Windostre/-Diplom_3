@@ -31,6 +31,15 @@ public class LoginNegativeParamTests {
         Utils utils = new Utils();
         return utils.generateRandomPassword();
     }
+    private static String defaultEmail() {
+        Utils utils = new Utils();
+        return utils.DEFAULT_EMAIL;
+    }
+    private static String defaultPassword() {
+        Utils utils = new Utils();
+        return utils.DEFAULT_PASSWORD;
+    }
+
     @Parameterized.Parameter(0)
     public String comment;
     @Parameterized.Parameter(1)
@@ -42,10 +51,10 @@ public class LoginNegativeParamTests {
     public static Object[][] getTestData() {
         return new Object[][] {
                 {"Пользователь не существует",randomEmail(), randomPassword()},
-                {"Правильный логин, неправильный пароль","some_client@mail.com", randomPassword()},
-                {"Неравильный логин, правильный пароль",randomEmail(), "123456"},
-                {"Правильный логин, пустой пароль","some_client@mail.com", ""},
-                {"Пустой логин, правильный пароль","", "123456"},
+                {"Правильный логин, неправильный пароль",defaultEmail(), randomPassword()},
+                {"Неравильный логин, правильный пароль",randomEmail(), defaultPassword()},
+                {"Правильный логин, пустой пароль",defaultEmail(), ""},
+                {"Пустой логин, правильный пароль","", defaultPassword()},
         };
 
     }
@@ -58,7 +67,7 @@ public class LoginNegativeParamTests {
         mainPage.open()
                 .goToLoginPage();
         loginPage
-                .logIn(email,password);
+                .logInString(email,password);
 
         assertTrue(loginPage.isCurrentPositionLoginPage());
         assertFalse(mainPage.isCurrentPositionMainPageWhenLoggedIn());
