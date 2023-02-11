@@ -24,7 +24,7 @@ public class LoginPositiveTests {
     private UserData userData;
 
     @Before
-    public void setUp() {
+    public void localSetUp() {
         mainPage = new MainPage(browserRules.getDriver());
         loginPage = new LoginPage(browserRules.getDriver());
         registerPage = new RegisterPage(browserRules.getDriver());
