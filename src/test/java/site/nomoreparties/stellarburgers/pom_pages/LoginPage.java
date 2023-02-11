@@ -15,8 +15,6 @@ public class LoginPage {
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
-    // some_client@mail.com
-    //123456
     /* POM локаторы */
     //поле ввода e-mail
     private final By emailInput = By.xpath(".//input[@name='name']");
@@ -44,13 +42,14 @@ public class LoginPage {
         return this;
 
     }
+
     public LoginPage logInString(String email, String password) {
         driver.findElement(emailInput).click();
         driver.findElement(emailInput).clear();
         driver.findElement(emailInput).sendKeys(email);
         driver.findElement(passwordInput).click();
         driver.findElement(passwordInput).clear();
-        driver.findElement(passwordInput).sendKeys(email);
+        driver.findElement(passwordInput).sendKeys(password);
         driver.findElement(enterButton).click();
         return this;
 
