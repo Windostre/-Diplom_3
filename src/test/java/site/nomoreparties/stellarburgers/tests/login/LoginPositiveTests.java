@@ -41,7 +41,7 @@ public class LoginPositiveTests {
             loginPage.logIn(userData);
         }
 
-        assertTrue(mainPage.isCurrentPositionMainPageWhenLoggedIn());
+        assertTrue(mainPage.isCurrentPositionMainPageAuthorized());
 
     }
 
@@ -51,7 +51,7 @@ public class LoginPositiveTests {
         mainPage.goToLoginPage();
         loginPage.logIn(userData);
 
-        assertTrue(mainPage.isCurrentPositionMainPageWhenLoggedIn());
+        assertTrue(mainPage.isCurrentPositionMainPageAuthorized());
 
     }
 
@@ -63,7 +63,7 @@ public class LoginPositiveTests {
         registerPage.goToLoginPage();
         loginPage.logIn(userData);
 
-        assertTrue(mainPage.isCurrentPositionMainPageWhenLoggedIn());
+        assertTrue(mainPage.isCurrentPositionMainPageAuthorized());
 
     }
 
@@ -75,7 +75,7 @@ public class LoginPositiveTests {
         forgotPasswordPage.goToLoginPage();
         loginPage.logIn(userData);
 
-        assertTrue(mainPage.isCurrentPositionMainPageWhenLoggedIn());
+        assertTrue(mainPage.isCurrentPositionMainPageAuthorized());
 
     }
 

@@ -63,7 +63,7 @@ public class LoginNegativeParamTests {
         loginPage.logInString(email,password);
 
         assertTrue(loginPage.isCurrentPositionLoginPage());
-        assertFalse(mainPage.isCurrentPositionMainPageWhenLoggedIn());
+        assertFalse(mainPage.isCurrentPositionMainPageAuthorized());
 
     }
 }

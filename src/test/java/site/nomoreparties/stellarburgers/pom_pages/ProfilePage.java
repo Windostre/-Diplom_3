@@ -19,8 +19,12 @@ public class ProfilePage {
     }
 
     /* POM локаторы */
+    //кнопка "Выход"
     private final By exitButton = By.xpath(".//button[text()='Выход']");
+    //кнопка "Профиль"
     private final By profileButton = By.xpath(".//a[contains(@href, 'profile')]");
+    //Логотип
+    private final By logo = By.xpath(".//div[contains(@class, 'header__logo')]");
 
     /* POM методы */
     public void deleteUserViaApi(String accessToken) {
@@ -33,6 +37,10 @@ public class ProfilePage {
 
     public void logout() {
         driver.findElement(exitButton).click();
+    }
+
+    public void goToMainPage() {
+        driver.findElement(logo).click();
     }
 
     /* POM чеки */

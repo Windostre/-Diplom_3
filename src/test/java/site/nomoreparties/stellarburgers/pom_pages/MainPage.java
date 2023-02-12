@@ -39,9 +39,17 @@ public class MainPage {
 
 
     /* POM чеки */
-    public boolean isCurrentPositionMainPageWhenLoggedIn(){
+    public boolean isCurrentPositionMainPageAuthorized(){
         try {
             driver.findElement(makeOrderButton);
+            return true;
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+    }
+    public boolean isCurrentPositionMainPageNotAuthorized(){
+        try {
+            driver.findElement(signInButton);
             return true;
         } catch (NoSuchElementException ex) {
             return false;

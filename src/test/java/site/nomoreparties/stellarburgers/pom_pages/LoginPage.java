@@ -33,6 +33,8 @@ public class LoginPage {
     private final By registerLink = By.xpath("//*[starts-with(@href, '/register')]");
     //Ссылка "Восстановить пароль"
     private final By restorePasswordLink = By.xpath("//*[starts-with(@href, '/forgot-password')]");
+    //Логотип
+    private final By logo = By.xpath(".//div[contains(@class, 'header__logo')]");
 
 
     /* POM методы */
@@ -70,13 +72,14 @@ public class LoginPage {
         return this;
     }
 
-
     public String getAccessToken() throws InterruptedException {
         Thread.sleep(500);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         return (String) js.executeScript(String.format("return window.localStorage.getItem('%s');", "accessToken"));
     }
-
+    public void goToMainPage() {
+        driver.findElement(logo).click();
+    }
 
     /* POM чеки */
     public boolean isCurrentPositionLoginPage() {
