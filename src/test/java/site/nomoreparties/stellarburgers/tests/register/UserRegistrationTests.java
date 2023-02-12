@@ -1,6 +1,5 @@
 package site.nomoreparties.stellarburgers.tests.register;
 
-import io.restassured.http.ContentType;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -14,6 +13,7 @@ import site.nomoreparties.stellarburgers.pom_pages.ProfilePage;
 import site.nomoreparties.stellarburgers.pom_pages.RegisterPage;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class UserRegistrationTests {
@@ -24,11 +24,11 @@ public class UserRegistrationTests {
     private LoginPage loginPage;
     private RegisterPage registerPage;
     private ProfilePage profilePage;
+    private String name;
+    private String email;
+    private String password;
     private String accessToken;
-
     private Utils utils = new Utils();
-    private UserData userData;
-    private UserData loginData;
 
     @Before
     public void localSetUp() {
@@ -36,20 +36,23 @@ public class UserRegistrationTests {
         loginPage = new LoginPage(browserRules.getDriver());
         registerPage = new RegisterPage(browserRules.getDriver());
         profilePage = new ProfilePage(browserRules.getDriver());
-        userData = utils.generateRandomUser();
-        loginData = UserData.builder().email(userData.getEmail()).password(userData.getPassword()).build();
+        name = utils.generateRandomName();
+        email = utils.generateRandomEmail();
+        password = utils.generateRandomPassword();
 
     }
 
     @After
     public void localTearDown() throws InterruptedException {
-        loginPage.logIn(loginData);
-        accessToken = loginPage.getAccessToken(); //Для удаления
-        if (accessToken == null || "".equals(accessToken)) {
+        if(!loginPage.isCurrentPositionLoginPage()) {
             return;
         }
-        profilePage.deleteUserViaApi(accessToken);
-
+        loginPage.logInString(email,password);
+            accessToken = loginPage.getAccessToken(); //Для удаления
+            if (accessToken == null || "".equals(accessToken)) {
+                return;
+            }
+            profilePage.deleteUserViaApi(accessToken);
     }
 
     @Test
@@ -57,10 +60,34 @@ public class UserRegistrationTests {
         mainPage.open();
         mainPage.clickUserProfile();
         loginPage.goToRegisterPage();
-        registerPage.fillSignInForm(userData);
+        registerPage.fillSignInForm(name, email, password);
         registerPage.submitSignIn();
 
         assertTrue(loginPage.isCurrentPositionLoginPage());
+
+    }
+
+    @Test
+    public void registerNewUserSuccess() {
+        mainPage.open();
+        mainPage.goToLoginPage();
+        loginPage.goToRegisterPage();
+        registerPage.fillSignInForm(name, email, password);
+        registerPage.submitSignIn();
+
+        assertTrue(loginPage.isCurrentPositionLoginPage());
+
+    }
+    @Test
+    public void registerNewUserFailWhenNameIsEmpty() {
+        name = "";
+        mainPage.open();
+        mainPage.goToLoginPage();
+        loginPage.goToRegisterPage();
+        registerPage.fillSignInForm(name, email, password);
+        registerPage.submitSignIn();
+
+        assertTrue(registerPage.isCurrentPositionRegisterPage());
 
     }
 

@@ -1,9 +1,15 @@
 package site.nomoreparties.stellarburgers.pom_pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.locators.RelativeLocator;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import site.nomoreparties.stellarburgers.model.UserData;
+
+import java.time.Duration;
+import java.util.stream.Stream;
 
 /**
  * Описание страницы регистрации пользователя
@@ -17,7 +23,7 @@ public class RegisterPage {
     }
     /* POM локаторы */
     //Заголовок "Регистрация"
-    private final By headerRegistration = By.linkText("Регистрация");
+    private final By registrationHeader = By.xpath(".//h2[text()='Регистрация']");
     //Поле Имя
     private final By nameInput = RelativeLocator.with(By.xpath("//input[contains(@class, 'input__textfield')]")).near(By.xpath(".//label[text()='Имя']"));
     //Поле email
@@ -36,16 +42,16 @@ public class RegisterPage {
         driver.findElement(loginLink).click();
     }
 
-    public void fillSignInForm(UserData userData) {
+    public void fillSignInForm(String name, String email, String password) {
         driver.findElement(nameInput).click();
         driver.findElement(nameInput).clear();
-        driver.findElement(nameInput).sendKeys(userData.getName());
+        driver.findElement(nameInput).sendKeys(name);
         driver.findElement(emailInput).click();
         driver.findElement(emailInput).clear();
-        driver.findElement(emailInput).sendKeys(userData.getEmail());
+        driver.findElement(emailInput).sendKeys(email);
         driver.findElement(passwordInput).click();
         driver.findElement(passwordInput).clear();
-        driver.findElement(passwordInput).sendKeys(userData.getPassword());
+        driver.findElement(passwordInput).sendKeys(password);
 
     }
 
@@ -53,5 +59,15 @@ public class RegisterPage {
         driver.findElement(signInButton).click();
     }
 
+
     /* POM чеки */
+    public boolean isCurrentPositionRegisterPage() {
+        try {
+            driver.findElement(registrationHeader);
+            return true;
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+
+    }
 }
