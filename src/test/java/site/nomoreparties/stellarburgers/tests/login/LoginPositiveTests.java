@@ -22,7 +22,6 @@ public class LoginPositiveTests {
     private ForgotPasswordPage forgotPasswordPage;
     private Utils utils = new Utils();
     private UserData userData;
-    private String accessToken;
 
     @Before
     public void localSetUp() {
