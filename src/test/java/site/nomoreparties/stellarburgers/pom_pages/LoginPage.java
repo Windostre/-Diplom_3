@@ -1,6 +1,7 @@
 package site.nomoreparties.stellarburgers.pom_pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import site.nomoreparties.stellarburgers.model.UserData;
@@ -11,6 +12,7 @@ import site.nomoreparties.stellarburgers.model.UserData;
 public class LoginPage {
 
     private WebDriver driver;
+
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -64,6 +66,14 @@ public class LoginPage {
         driver.findElement(restorePasswordLink).click();
         return this;
     }
+
+
+    public String getAccessToken() throws InterruptedException {
+        Thread.sleep(500);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return (String) js.executeScript(String.format("return window.localStorage.getItem('%s');", "accessToken"));
+    }
+
 
     /* POM чеки */
     public boolean isCurrentPositionLoginPage() {
