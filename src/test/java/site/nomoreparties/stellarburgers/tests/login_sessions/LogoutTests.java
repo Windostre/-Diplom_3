@@ -1,4 +1,4 @@
-package site.nomoreparties.stellarburgers.tests;
+package site.nomoreparties.stellarburgers.tests.login_sessions;
 
 import org.junit.Before;
 import org.junit.Rule;
