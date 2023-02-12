@@ -58,10 +58,9 @@ public class LoginNegativeParamTests {
         MainPage mainPage = new MainPage(browserRules.getDriver());
         LoginPage loginPage = new LoginPage(browserRules.getDriver());
 
-        mainPage.open()
-                .goToLoginPage();
-        loginPage
-                .logInString(email,password);
+        mainPage.open();
+        mainPage.goToLoginPage();
+        loginPage.logInString(email,password);
 
         assertTrue(loginPage.isCurrentPositionLoginPage());
         assertFalse(mainPage.isCurrentPositionMainPageWhenLoggedIn());

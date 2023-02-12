@@ -32,12 +32,11 @@ public class RegisterPage {
 
 
     /* POM методы */
-    public RegisterPage goToLoginPage() {
+    public void goToLoginPage() {
         driver.findElement(loginLink).click();
-        return this;
     }
 
-    public RegisterPage fillSignInForm(UserData userData) {
+    public void fillSignInForm(UserData userData) {
         driver.findElement(nameInput).click();
         driver.findElement(nameInput).clear();
         driver.findElement(nameInput).sendKeys(userData.getName());
@@ -47,13 +46,11 @@ public class RegisterPage {
         driver.findElement(passwordInput).click();
         driver.findElement(passwordInput).clear();
         driver.findElement(passwordInput).sendKeys(userData.getPassword());
-        return this;
 
     }
 
-    public RegisterPage submitSignIn() {
+    public void submitSignIn() {
         driver.findElement(signInButton).click();
-        return this;
     }
 
     /* POM чеки */

@@ -26,18 +26,15 @@ public class MainPage {
     private final By signInButton = By.xpath(".//button[text()='Войти в аккаунт']");
 
     /* POM методы */
-    public MainPage open() {
+    public void open() {
         driver.get(url);
-        return this;
     }
-    public MainPage clickUserProfile() {
+    public void clickUserProfile() {
         driver.findElement(profileButton).click();
-        return this;
     }
 
-    public MainPage goToLoginPage() {
+    public void goToLoginPage() {
         driver.findElement(signInButton).click();
-        return this;
     }
 
 

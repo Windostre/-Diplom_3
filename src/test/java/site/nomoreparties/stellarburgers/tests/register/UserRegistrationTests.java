@@ -50,16 +50,15 @@ public class UserRegistrationTests {
         }
         profilePage.deleteUserViaApi(accessToken);
 
-
     }
 
     @Test
     public void registerNewUserViaUserProfileSuccess() {
-        mainPage.open()
-                .clickUserProfile();
+        mainPage.open();
+        mainPage.clickUserProfile();
         loginPage.goToRegisterPage();
-        registerPage.fillSignInForm(userData)
-                    .submitSignIn();
+        registerPage.fillSignInForm(userData);
+        registerPage.submitSignIn();
 
         assertTrue(loginPage.isCurrentPositionLoginPage());
 

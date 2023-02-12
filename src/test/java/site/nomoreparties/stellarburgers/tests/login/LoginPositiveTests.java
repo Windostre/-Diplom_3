@@ -35,8 +35,8 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaUserProfileSuccess() {
-        mainPage.open()
-                .clickUserProfile();
+        mainPage.open();
+        mainPage.clickUserProfile();
 
         if(loginPage.isCurrentPositionLoginPage()) {
             loginPage.logIn(userData);
@@ -48,8 +48,8 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaSignInButtonSuccess() {
-        mainPage.open()
-                .goToLoginPage();
+        mainPage.open();
+        mainPage.goToLoginPage();
         loginPage.logIn(userData);
 
         assertTrue(mainPage.isCurrentPositionMainPageWhenLoggedIn());
@@ -58,8 +58,8 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaRegistrationFormSuccess() {
-        mainPage.open()
-                .goToLoginPage();
+        mainPage.open();
+        mainPage.goToLoginPage();
         loginPage.goToRegisterPage();
         registerPage.goToLoginPage();
         loginPage.logIn(userData);
@@ -70,8 +70,8 @@ public class LoginPositiveTests {
 
     @Test
     public void loginViaForgotPasswordPageSuccess() throws InterruptedException {
-        mainPage.open()
-                .goToLoginPage();
+        mainPage.open();
+        mainPage.goToLoginPage();
         loginPage.goToRestorePasswordPage();
         forgotPasswordPage.goToLoginPage();
         loginPage.logIn(userData);
