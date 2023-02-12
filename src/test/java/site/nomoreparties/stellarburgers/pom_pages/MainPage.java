@@ -20,8 +20,8 @@ public class MainPage {
     private final By profileButton = By.linkText("Личный Кабинет");
     //кнопка "Оформить заказ" - ожидается для залоггининых пользователей
     private final By makeOrderButton = By.xpath(".//button[text()='Оформить заказ']");
-    //Заголовок вкладки "Конструктор"
-    private final By makeBurgerHeader = By.xpath(".//button[text()='Оформить заказ']");
+    //кнопка "Конструктор"
+    private final By constructorTab = By.linkText("Конструктор");
     //кнопка "Войти в аккаунт"
     private final By signInButton = By.xpath(".//button[text()='Войти в аккаунт']");
 
@@ -35,6 +35,10 @@ public class MainPage {
 
     public void goToLoginPage() {
         driver.findElement(signInButton).click();
+    }
+
+    public void goToBurgerConstructor() {
+        driver.findElement(constructorTab).click();
     }
 
 
