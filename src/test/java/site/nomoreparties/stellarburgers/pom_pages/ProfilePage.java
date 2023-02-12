@@ -1,6 +1,8 @@
 package site.nomoreparties.stellarburgers.pom_pages;
 
 import io.restassured.http.ContentType;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 import static io.restassured.RestAssured.given;
@@ -16,6 +18,11 @@ public class ProfilePage {
         this.driver = driver;
     }
 
+    /* POM локаторы */
+    private final By exitButton = By.xpath(".//button[text()='Выход']");
+    private final By profileButton = By.xpath(".//a[contains(@href, 'profile')]");
+
+    /* POM методы */
     public void deleteUserViaApi(String accessToken) {
         given().contentType(ContentType.JSON)
                 .baseUri("https://stellarburgers.nomoreparties.site")
@@ -23,4 +30,21 @@ public class ProfilePage {
                 .when()
                 .delete("/api/auth/user");
     }
+
+    public void logout() {
+        driver.findElement(exitButton).click();
+    }
+
+    /* POM чеки */
+    public boolean isCurrentPositionProfilePage() {
+        try {
+            driver.findElement(profileButton);
+            return true;
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+
+    }
+
+
 }
