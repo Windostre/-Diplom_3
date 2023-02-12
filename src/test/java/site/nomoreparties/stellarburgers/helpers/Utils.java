@@ -33,7 +33,7 @@ public class Utils {
         return faker.name().firstName();
     }
 
-    public String generateRandomPassword() {
+    public String generateRandomPassword() { //согласно требованиям мин длина пароля 6 символов
         return faker.internet()
                 .password(6, 12, true, true, true);
     }

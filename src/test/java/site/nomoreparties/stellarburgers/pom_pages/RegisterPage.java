@@ -32,9 +32,10 @@ public class RegisterPage {
     private final By passwordInput = By.xpath(".//input[@name='Пароль']");
     //Кнопка "Зарегистрироваться"
     private final By signInButton = By.xpath(".//button[text()='Зарегистрироваться']");
-
     //Ссылка "Войти"
     private final By loginLink = By.xpath("//*[starts-with(@href, '/login')]");
+    //Сообщениеоб ошибке
+    private final By errorInputMessage = By.xpath(".//*[contains(@class, 'input__error')]");
 
 
     /* POM методы */
@@ -52,6 +53,11 @@ public class RegisterPage {
         driver.findElement(passwordInput).click();
         driver.findElement(passwordInput).clear();
         driver.findElement(passwordInput).sendKeys(password);
+
+    }
+
+    public String getErrorMessage() {
+        return driver.findElement(errorInputMessage).getText();
 
     }
 

@@ -6,14 +6,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import site.nomoreparties.stellarburgers.helpers.BrowserRules;
 import site.nomoreparties.stellarburgers.helpers.Utils;
-import site.nomoreparties.stellarburgers.model.UserData;
 import site.nomoreparties.stellarburgers.pom_pages.LoginPage;
 import site.nomoreparties.stellarburgers.pom_pages.MainPage;
 import site.nomoreparties.stellarburgers.pom_pages.ProfilePage;
 import site.nomoreparties.stellarburgers.pom_pages.RegisterPage;
 
-import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class UserRegistrationTests {
@@ -28,7 +26,7 @@ public class UserRegistrationTests {
     private String email;
     private String password;
     private String accessToken;
-    private Utils utils = new Utils();
+    private final Utils utils = new Utils();
 
     @Before
     public void localSetUp() {
@@ -44,15 +42,15 @@ public class UserRegistrationTests {
 
     @After
     public void localTearDown() throws InterruptedException {
-        if(!loginPage.isCurrentPositionLoginPage()) {
+        if (!loginPage.isCurrentPositionLoginPage()) {
             return;
         }
-        loginPage.logInString(email,password);
-            accessToken = loginPage.getAccessToken(); //Для удаления
-            if (accessToken == null || "".equals(accessToken)) {
-                return;
-            }
-            profilePage.deleteUserViaApi(accessToken);
+        loginPage.logInString(email, password);
+        accessToken = loginPage.getAccessToken(); //Для удаления
+        if (accessToken == null || "".equals(accessToken)) {
+            return;
+        }
+        profilePage.deleteUserViaApi(accessToken);
     }
 
     @Test
@@ -78,6 +76,7 @@ public class UserRegistrationTests {
         assertTrue(loginPage.isCurrentPositionLoginPage());
 
     }
+
     @Test
     public void registerNewUserFailWhenNameIsEmpty() {
         name = "";
@@ -87,6 +86,47 @@ public class UserRegistrationTests {
         registerPage.fillSignInForm(name, email, password);
         registerPage.submitSignIn();
 
+        assertTrue(registerPage.isCurrentPositionRegisterPage());
+
+    }
+
+    @Test
+    public void registerNewUserFailWhenEmailIsEmpty() {
+        email = "";
+        mainPage.open();
+        mainPage.goToLoginPage();
+        loginPage.goToRegisterPage();
+        registerPage.fillSignInForm(name, email, password);
+        registerPage.submitSignIn();
+
+        assertTrue(registerPage.isCurrentPositionRegisterPage());
+
+    }
+
+    @Test
+    public void registerNewUserFailWhenPasswordIsEmpty() {
+        password = "";
+        mainPage.open();
+        mainPage.goToLoginPage();
+        loginPage.goToRegisterPage();
+        registerPage.fillSignInForm(name, email, password);
+        registerPage.submitSignIn();
+
+        assertTrue(registerPage.isCurrentPositionRegisterPage());
+
+    }
+    @Test
+    public void registerNewUserFailWhenPasswordIsShort() {
+        password = utils.generateShortPassword();
+        mainPage.open();
+        mainPage.goToLoginPage();
+        loginPage.goToRegisterPage();
+        registerPage.fillSignInForm(name, email, password);
+        registerPage.submitSignIn();
+
+        String actualMessage = registerPage.getErrorMessage();
+
+        assertEquals("Некорректный пароль", actualMessage);
         assertTrue(registerPage.isCurrentPositionRegisterPage());
 
     }
