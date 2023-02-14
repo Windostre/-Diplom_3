@@ -6,17 +6,19 @@ import org.junit.Test;
 import site.nomoreparties.stellarburgers.helpers.BrowserRules;
 import site.nomoreparties.stellarburgers.helpers.Utils;
 import site.nomoreparties.stellarburgers.model.UserData;
-import site.nomoreparties.stellarburgers.pom_pages.*;
+import site.nomoreparties.stellarburgers.pom_pages.LoginPage;
+import site.nomoreparties.stellarburgers.pom_pages.MainPage;
+import site.nomoreparties.stellarburgers.pom_pages.ProfilePage;
 
 import static org.junit.Assert.assertTrue;
 
 public class MainPageNavigationTests {
+    private final Utils utils = new Utils();
     @Rule
     public BrowserRules browserRules = new BrowserRules(BrowserRules.CHROME);
     private MainPage mainPage;
     private LoginPage loginPage;
     private ProfilePage profilePage;
-    private Utils utils = new Utils();
     private UserData loginData;
 
     @Before
@@ -36,6 +38,7 @@ public class MainPageNavigationTests {
 
         assertTrue(profilePage.isCurrentPositionProfilePage());
     }
+
     @Test
     public void goToProfileFromMainPageFailWhenNotAuthorized() {
         mainPage.open();

@@ -7,16 +7,14 @@ import org.openqa.selenium.WebDriver;
  * Описание страницы восстановления пароля
  */
 public class ForgotPasswordPage {
-    private WebDriver driver;
+    /* POM локаторы */
+    //Ссылка "Войти"
+    private final By loginLink = By.xpath(".//*[starts-with(@href, '/login')]");
+    private final WebDriver driver;
 
     public ForgotPasswordPage(WebDriver driver) {
         this.driver = driver;
     }
-
-    /* POM локаторы */
-    //Ссылка "Войти"
-    private final By loginLink = By.xpath(".//*[starts-with(@href, '/login')]");
-
 
     /* POM методы */
     public void goToLoginPage() {

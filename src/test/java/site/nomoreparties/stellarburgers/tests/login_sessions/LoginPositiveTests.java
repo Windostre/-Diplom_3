@@ -6,21 +6,21 @@ import org.junit.Test;
 import site.nomoreparties.stellarburgers.helpers.BrowserRules;
 import site.nomoreparties.stellarburgers.helpers.Utils;
 import site.nomoreparties.stellarburgers.model.UserData;
+import site.nomoreparties.stellarburgers.pom_pages.ForgotPasswordPage;
 import site.nomoreparties.stellarburgers.pom_pages.LoginPage;
 import site.nomoreparties.stellarburgers.pom_pages.MainPage;
 import site.nomoreparties.stellarburgers.pom_pages.RegisterPage;
-import site.nomoreparties.stellarburgers.pom_pages.ForgotPasswordPage;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class LoginPositiveTests {
+    private final Utils utils = new Utils();
     @Rule
-    public BrowserRules browserRules = new BrowserRules(BrowserRules.CHROME );
+    public BrowserRules browserRules = new BrowserRules(BrowserRules.CHROME);
     private MainPage mainPage;
     private LoginPage loginPage;
     private RegisterPage registerPage;
     private ForgotPasswordPage forgotPasswordPage;
-    private Utils utils = new Utils();
     private UserData userData;
 
     @Before
@@ -37,12 +37,11 @@ public class LoginPositiveTests {
         mainPage.open();
         mainPage.clickUserProfile();
 
-        if(loginPage.isCurrentPositionLoginPage()) {
+        if (loginPage.isCurrentPositionLoginPage()) {
             loginPage.logIn(userData);
         }
 
         assertTrue(mainPage.isCurrentPositionMainPageAuthorized());
-
     }
 
     @Test
@@ -52,7 +51,6 @@ public class LoginPositiveTests {
         loginPage.logIn(userData);
 
         assertTrue(mainPage.isCurrentPositionMainPageAuthorized());
-
     }
 
     @Test
@@ -64,7 +62,6 @@ public class LoginPositiveTests {
         loginPage.logIn(userData);
 
         assertTrue(mainPage.isCurrentPositionMainPageAuthorized());
-
     }
 
     @Test
@@ -76,7 +73,6 @@ public class LoginPositiveTests {
         loginPage.logIn(userData);
 
         assertTrue(mainPage.isCurrentPositionMainPageAuthorized());
-
     }
 
 }

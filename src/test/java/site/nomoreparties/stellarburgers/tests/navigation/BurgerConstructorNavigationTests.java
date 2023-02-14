@@ -4,7 +4,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import site.nomoreparties.stellarburgers.helpers.BrowserRules;
-import site.nomoreparties.stellarburgers.pom_pages.*;
+import site.nomoreparties.stellarburgers.pom_pages.ConstructorPage;
+import site.nomoreparties.stellarburgers.pom_pages.MainPage;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,7 +19,6 @@ public class BurgerConstructorNavigationTests {
     public void localSetUp() {
         mainPage = new MainPage(browserRules.getDriver());
         constructorPage = new ConstructorPage(browserRules.getDriver());
-
     }
 
     @Test
@@ -33,8 +33,8 @@ public class BurgerConstructorNavigationTests {
         int fillingLocation = constructorPage.getFillingLocation();
 
         assertEquals(bunLocation, fillingLocation, 50);
-
     }
+
     @Test
     public void switchFromBunToSauceTab() {
         mainPage.open();

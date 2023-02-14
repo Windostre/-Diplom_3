@@ -16,12 +16,6 @@ import static io.restassured.RestAssured.given;
  */
 
 public class ProfilePage {
-    private WebDriver driver;
-
-    public ProfilePage(WebDriver driver) {
-        this.driver = driver;
-    }
-
     /* POM локаторы */
     //кнопка "Выход"
     private final By exitButton = By.xpath(".//button[text()='Выход']");
@@ -29,6 +23,10 @@ public class ProfilePage {
     private final By profileButton = By.xpath(".//a[contains(@href, 'profile')]");
     //Логотип
     private final By logo = By.xpath(".//div[contains(@class, 'header__logo')]");
+    private final WebDriver driver;
+    public ProfilePage(WebDriver driver) {
+        this.driver = driver;
+    }
 
     /* POM методы */
     public void deleteUserViaApi(String accessToken) {

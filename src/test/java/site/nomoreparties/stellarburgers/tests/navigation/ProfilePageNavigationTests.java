@@ -13,12 +13,12 @@ import site.nomoreparties.stellarburgers.pom_pages.ProfilePage;
 import static org.junit.Assert.assertTrue;
 
 public class ProfilePageNavigationTests {
+    private final Utils utils = new Utils();
     @Rule
     public BrowserRules browserRules = new BrowserRules(BrowserRules.CHROME);
     private MainPage mainPage;
     private LoginPage loginPage;
     private ProfilePage profilePage;
-    private Utils utils = new Utils();
     private UserData loginData;
 
     @Before
@@ -39,6 +39,7 @@ public class ProfilePageNavigationTests {
 
         assertTrue(mainPage.isCurrentPositionMainPageAuthorized());
     }
+
     @Test
     public void goToHomePageFromLoginPage() {
         mainPage.open();

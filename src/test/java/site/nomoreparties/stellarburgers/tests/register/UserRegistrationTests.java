@@ -15,9 +15,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class UserRegistrationTests {
+    private final Utils utils = new Utils();
     @Rule
     public BrowserRules browserRules = new BrowserRules(BrowserRules.CHROME);
-
     private MainPage mainPage;
     private LoginPage loginPage;
     private RegisterPage registerPage;
@@ -26,7 +26,6 @@ public class UserRegistrationTests {
     private String email;
     private String password;
     private String accessToken;
-    private final Utils utils = new Utils();
 
     @Before
     public void localSetUp() {
@@ -37,7 +36,6 @@ public class UserRegistrationTests {
         name = utils.generateRandomName();
         email = utils.generateRandomEmail();
         password = utils.generateRandomPassword();
-
     }
 
     @After
@@ -62,7 +60,6 @@ public class UserRegistrationTests {
         registerPage.submitSignIn();
 
         assertTrue(loginPage.isCurrentPositionLoginPage());
-
     }
 
     @Test
@@ -74,7 +71,6 @@ public class UserRegistrationTests {
         registerPage.submitSignIn();
 
         assertTrue(loginPage.isCurrentPositionLoginPage());
-
     }
 
     @Test
@@ -87,7 +83,6 @@ public class UserRegistrationTests {
         registerPage.submitSignIn();
 
         assertTrue(registerPage.isCurrentPositionRegisterPage());
-
     }
 
     @Test
@@ -100,7 +95,6 @@ public class UserRegistrationTests {
         registerPage.submitSignIn();
 
         assertTrue(registerPage.isCurrentPositionRegisterPage());
-
     }
 
     @Test
@@ -113,8 +107,8 @@ public class UserRegistrationTests {
         registerPage.submitSignIn();
 
         assertTrue(registerPage.isCurrentPositionRegisterPage());
-
     }
+
     @Test
     public void registerNewUserFailWhenPasswordIsShort() {
         password = utils.generateShortPassword();
@@ -128,7 +122,6 @@ public class UserRegistrationTests {
 
         assertEquals("Некорректный пароль", actualMessage);
         assertTrue(registerPage.isCurrentPositionRegisterPage());
-
     }
 
 }

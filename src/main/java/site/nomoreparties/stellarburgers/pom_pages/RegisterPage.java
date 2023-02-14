@@ -10,18 +10,13 @@ import org.openqa.selenium.support.locators.RelativeLocator;
  */
 
 public class RegisterPage {
-    private WebDriver driver;
-
-    public RegisterPage(WebDriver driver) {
-        this.driver = driver;
-    }
     /* POM локаторы */
     //Заголовок "Регистрация"
     private final By registrationHeader = By.xpath(".//h2[text()='Регистрация']");
     //Поле Имя
     private final By nameInput = RelativeLocator.with(By.xpath("//input[contains(@class, 'input__textfield')]")).near(By.xpath(".//label[text()='Имя']"));
     //Поле email
-     private final By emailInput = RelativeLocator.with(By.xpath("//input[contains(@class, 'input__textfield')]")).above(By.xpath(".//input[@name='Пароль']"));
+    private final By emailInput = RelativeLocator.with(By.xpath("//input[contains(@class, 'input__textfield')]")).above(By.xpath(".//input[@name='Пароль']"));
     //Поле пароль
     private final By passwordInput = By.xpath(".//input[@name='Пароль']");
     //Кнопка "Зарегистрироваться"
@@ -30,7 +25,10 @@ public class RegisterPage {
     private final By loginLink = By.xpath("//*[starts-with(@href, '/login')]");
     //Сообщениеоб ошибке
     private final By errorInputMessage = By.xpath(".//*[contains(@class, 'input__error')]");
-
+    private final WebDriver driver;
+    public RegisterPage(WebDriver driver) {
+        this.driver = driver;
+    }
 
     /* POM методы */
     public void goToLoginPage() {
@@ -47,12 +45,10 @@ public class RegisterPage {
         driver.findElement(passwordInput).click();
         driver.findElement(passwordInput).clear();
         driver.findElement(passwordInput).sendKeys(password);
-
     }
 
     public String getErrorMessage() {
         return driver.findElement(errorInputMessage).getText();
-
     }
 
     public void submitSignIn() {

@@ -6,18 +6,20 @@ import org.junit.Test;
 import site.nomoreparties.stellarburgers.helpers.BrowserRules;
 import site.nomoreparties.stellarburgers.helpers.Utils;
 import site.nomoreparties.stellarburgers.model.UserData;
-import site.nomoreparties.stellarburgers.pom_pages.*;
+import site.nomoreparties.stellarburgers.pom_pages.LoginPage;
+import site.nomoreparties.stellarburgers.pom_pages.MainPage;
+import site.nomoreparties.stellarburgers.pom_pages.ProfilePage;
+import site.nomoreparties.stellarburgers.pom_pages.RegisterPage;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 public class LogoutTests {
+    private final Utils utils = new Utils();
     @Rule
     public BrowserRules browserRules = new BrowserRules(BrowserRules.CHROME);
-    private Utils utils = new Utils();
     private MainPage mainPage;
     private LoginPage loginPage;
     private RegisterPage registerPage;
@@ -46,9 +48,7 @@ public class LogoutTests {
 
         assertThat(loginPage.getAccessToken(), is(nullValue()));
         assertTrue(loginPage.isCurrentPositionLoginPage());
-
     }
-
 
 
 }

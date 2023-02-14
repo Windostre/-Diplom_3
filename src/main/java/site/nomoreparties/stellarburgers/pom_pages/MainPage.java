@@ -9,12 +9,6 @@ import org.openqa.selenium.WebDriver;
  */
 
 public class MainPage {
-    private String url = "https://stellarburgers.nomoreparties.site/";
-    private WebDriver driver;
-
-    public MainPage(WebDriver driver) {
-        this.driver = driver;
-    }
     /* POM локаторы */
     //кнопка "Личный кабинет"
     private final By profileButton = By.linkText("Личный Кабинет");
@@ -24,11 +18,17 @@ public class MainPage {
     private final By constructorTab = By.linkText("Конструктор");
     //кнопка "Войти в аккаунт"
     private final By signInButton = By.xpath(".//button[text()='Войти в аккаунт']");
+    private final String url = "https://stellarburgers.nomoreparties.site/";
+    private final WebDriver driver;
+    public MainPage(WebDriver driver) {
+        this.driver = driver;
+    }
 
     /* POM методы */
     public void open() {
         driver.get(url);
     }
+
     public void clickUserProfile() {
         driver.findElement(profileButton).click();
     }
@@ -41,9 +41,8 @@ public class MainPage {
         driver.findElement(constructorTab).click();
     }
 
-
     /* POM чеки */
-    public boolean isCurrentPositionMainPageAuthorized(){
+    public boolean isCurrentPositionMainPageAuthorized() {
         try {
             driver.findElement(makeOrderButton);
             return true;
@@ -51,7 +50,8 @@ public class MainPage {
             return false;
         }
     }
-    public boolean isCurrentPositionMainPageNotAuthorized(){
+
+    public boolean isCurrentPositionMainPageNotAuthorized() {
         try {
             driver.findElement(signInButton);
             return true;
@@ -59,9 +59,6 @@ public class MainPage {
             return false;
         }
     }
-
-
-
 
 
 }

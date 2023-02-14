@@ -11,11 +11,6 @@ import site.nomoreparties.stellarburgers.model.UserData;
  */
 public class LoginPage {
 
-    private WebDriver driver;
-
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-    }
     /* POM локаторы */
     //поле ввода e-mail
     private final By emailInput = By.xpath(".//input[@name='name']");
@@ -31,10 +26,13 @@ public class LoginPage {
     private final By restorePasswordLink = By.xpath("//*[starts-with(@href, '/forgot-password')]");
     //Логотип
     private final By logo = By.xpath(".//div[contains(@class, 'header__logo')]");
-
+    private final WebDriver driver;
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
+    }
 
     /* POM методы */
-    public LoginPage logIn(UserData userData) {
+    public void logIn(UserData userData) {
         driver.findElement(emailInput).click();
         driver.findElement(emailInput).clear();
         driver.findElement(emailInput).sendKeys(userData.getEmail());
@@ -42,8 +40,6 @@ public class LoginPage {
         driver.findElement(passwordInput).clear();
         driver.findElement(passwordInput).sendKeys(userData.getPassword());
         driver.findElement(enterButton).click();
-        return this;
-
     }
 
     public LoginPage logInString(String email, String password) {
@@ -73,6 +69,7 @@ public class LoginPage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         return (String) js.executeScript(String.format("return window.localStorage.getItem('%s');", "accessToken"));
     }
+
     public void goToMainPage() {
         driver.findElement(logo).click();
     }
