@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pom_pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -32,6 +33,7 @@ public class LoginPage {
     }
 
     /* POM методы */
+    @Step("Авторизоваться")
     public void logIn(UserData userData) {
         driver.findElement(emailInput).click();
         driver.findElement(emailInput).clear();
@@ -42,6 +44,7 @@ public class LoginPage {
         driver.findElement(enterButton).click();
     }
 
+    @Step("Авторизоваться")
     public LoginPage logInString(String email, String password) {
         driver.findElement(emailInput).click();
         driver.findElement(emailInput).clear();
@@ -54,27 +57,32 @@ public class LoginPage {
 
     }
 
+    @Step("Перейти на страницу регистрации по ссылке")
     public LoginPage goToRegisterPage() {
         driver.findElement(registerLink).click();
         return this;
     }
 
+    @Step("Перейти на страницу восстановления пароля")
     public LoginPage goToRestorePasswordPage() {
         driver.findElement(restorePasswordLink).click();
         return this;
     }
 
+    @Step("Получить авторизационный токен")
     public String getAccessToken() throws InterruptedException {
         Thread.sleep(500);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         return (String) js.executeScript(String.format("return window.localStorage.getItem('%s');", "accessToken"));
     }
 
+    @Step("Перейти на главную страницу")
     public void goToMainPage() {
         driver.findElement(logo).click();
     }
 
     /* POM чеки */
+    @Step("Проверка. Находится странице авторизации")
     public boolean isCurrentPositionLoginPage() {
         try {
             driver.findElement(loginHeader);

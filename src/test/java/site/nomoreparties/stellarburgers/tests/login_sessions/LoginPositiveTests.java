@@ -1,5 +1,8 @@
 package site.nomoreparties.stellarburgers.tests.login_sessions;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -23,6 +26,7 @@ public class LoginPositiveTests {
     private ForgotPasswordPage forgotPasswordPage;
     private UserData userData;
 
+    @Step("Выполнить предварительные действия для теста авторизацию")
     @Before
     public void localSetUp() {
         mainPage = new MainPage(browserRules.getDriver());
@@ -32,6 +36,8 @@ public class LoginPositiveTests {
         userData = utils.defaultLoginData();
     }
 
+    @DisplayName("Авторизация пользователя через личный кабинет. Успешно")
+    @Description("Проверяет, что при вводе валидного логина и пароля пользователь успешно авторизуется и переходит на главную страницу")
     @Test
     public void loginViaUserProfileSuccess() {
         mainPage.open();
@@ -44,6 +50,8 @@ public class LoginPositiveTests {
         assertTrue(mainPage.isCurrentPositionMainPageAuthorized());
     }
 
+    @DisplayName("Авторизация пользователя через вход в аккаунт. Успешно")
+    @Description("Проверяет, что при вводе валидного логина и пароля пользователь успешно авторизуется и переходит на главную страницу")
     @Test
     public void loginViaSignInButtonSuccess() {
         mainPage.open();
@@ -54,6 +62,8 @@ public class LoginPositiveTests {
     }
 
     @Test
+    @DisplayName("Авторизация пользователя через форму регистрации. Успешно")
+    @Description("Проверяет, что при вводе валидного логина и пароля пользователь успешно авторизуется и переходит на главную страницу")
     public void loginViaRegistrationFormSuccess() {
         mainPage.open();
         mainPage.goToLoginPage();
@@ -64,6 +74,8 @@ public class LoginPositiveTests {
         assertTrue(mainPage.isCurrentPositionMainPageAuthorized());
     }
 
+    @DisplayName("Авторизация пользователя через форму восстановления пароля. Успешно")
+    @Description("Проверяет, что при вводе валидного логина и пароля пользователь успешно авторизуется и переходит на главную страницу")
     @Test
     public void loginViaForgotPasswordPageSuccess() throws InterruptedException {
         mainPage.open();

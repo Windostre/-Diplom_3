@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pom_pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -31,10 +32,12 @@ public class RegisterPage {
     }
 
     /* POM методы */
+    @Step("Перейти на страницу авторизации")
     public void goToLoginPage() {
         driver.findElement(loginLink).click();
     }
 
+    @Step("Заполнить форму регистрации пользователя")
     public void fillSignInForm(String name, String email, String password) {
         driver.findElement(nameInput).click();
         driver.findElement(nameInput).clear();
@@ -47,16 +50,19 @@ public class RegisterPage {
         driver.findElement(passwordInput).sendKeys(password);
     }
 
+    @Step("Получить сообщение об ошибке")
     public String getErrorMessage() {
         return driver.findElement(errorInputMessage).getText();
     }
 
+    @Step("Подтвердить создание пользователя")
     public void submitSignIn() {
         driver.findElement(signInButton).click();
     }
 
 
     /* POM чеки */
+    @Step("Проверка. Находится на странице регистрации пользователя")
     public boolean isCurrentPositionRegisterPage() {
         try {
             driver.findElement(registrationHeader);

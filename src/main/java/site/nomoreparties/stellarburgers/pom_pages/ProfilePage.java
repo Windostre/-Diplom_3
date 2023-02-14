@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pom_pages;
 
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -29,6 +30,7 @@ public class ProfilePage {
     }
 
     /* POM методы */
+    @Step("Удалить пользователя")
     public void deleteUserViaApi(String accessToken) {
         given().contentType(ContentType.JSON)
                 .baseUri("https://stellarburgers.nomoreparties.site")
@@ -37,15 +39,18 @@ public class ProfilePage {
                 .delete("/api/auth/user");
     }
 
+    @Step("Выйти из приложения")
     public void logout() {
         driver.findElement(exitButton).click();
     }
 
+    @Step("Перейти на главную страницу")
     public void goToMainPage() {
         driver.findElement(logo).click();
     }
 
     /* POM чеки */
+    @Step("Проверка. Находится в личном кабинете")
     public boolean isCurrentPositionProfilePage() {
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(profileButton));
         try {

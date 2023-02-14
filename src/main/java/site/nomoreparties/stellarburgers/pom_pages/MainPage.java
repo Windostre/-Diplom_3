@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pom_pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -29,19 +30,23 @@ public class MainPage {
         driver.get(url);
     }
 
+    @Step("Нажать на кнопку Личный кабинет")
     public void clickUserProfile() {
         driver.findElement(profileButton).click();
     }
 
+    @Step("Перейти на страницу авторизации")
     public void goToLoginPage() {
         driver.findElement(signInButton).click();
     }
 
+    @Step("Перейти на страницу конструктора")
     public void goToBurgerConstructor() {
         driver.findElement(constructorTab).click();
     }
 
     /* POM чеки */
+    @Step("Проверка. Авторизованный пользователь находится на главной страницы")
     public boolean isCurrentPositionMainPageAuthorized() {
         try {
             driver.findElement(makeOrderButton);
@@ -51,6 +56,7 @@ public class MainPage {
         }
     }
 
+    @Step("Проверка. Неавторизованный пользователь находится на главной страницы")
     public boolean isCurrentPositionMainPageNotAuthorized() {
         try {
             driver.findElement(signInButton);

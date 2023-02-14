@@ -1,5 +1,8 @@
 package site.nomoreparties.stellarburgers.tests.navigation;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -9,23 +12,26 @@ import site.nomoreparties.stellarburgers.pom_pages.MainPage;
 
 import static org.junit.Assert.assertEquals;
 
-public class BurgerConstructorNavigationTests {
+public class ConstructorNavigationTests {
     @Rule
     public BrowserRules browserRules = new BrowserRules(BrowserRules.CHROME);
     private MainPage mainPage;
     private ConstructorPage constructorPage;
 
+    @Step("Выполнить предварительные действия для теста навигации по странице конструктора")
     @Before
     public void localSetUp() {
         mainPage = new MainPage(browserRules.getDriver());
         constructorPage = new ConstructorPage(browserRules.getDriver());
     }
 
+    @DisplayName("Переход из раздела Булки в Начинки. Успешно")
+    @Description("Проверяет, что успешно выполняется переход из раздела Булки к разделу Начинки, отображаются ингредиенты раздела")
     @Test
     public void switchFromBunToFillingTab() {
         mainPage.open();
         mainPage.goToBurgerConstructor();
-        constructorPage.waitForBunPageDownload();
+        constructorPage.waitForConstructorPageDownload();
 
         int bunLocation = constructorPage.getBunLocation();
         constructorPage.switchToFillingTab();
@@ -35,22 +41,24 @@ public class BurgerConstructorNavigationTests {
         assertEquals(bunLocation, fillingLocation, 50);
     }
 
+    @DisplayName("Переход из раздела Булки в Соусы. Успешно")
+    @Description("Проверяет, что успешно выполняется переход из раздела Булки к разделу Соусы, отображаются ингредиенты раздела")
     @Test
     public void switchFromBunToSauceTab() {
         mainPage.open();
         mainPage.goToBurgerConstructor();
 
         int bunLocation = constructorPage.getBunLocation();
-        System.out.println(bunLocation);
 
         constructorPage.switchToSauceTab();
 
         int sauceLocation = constructorPage.getSauceLocation();
-        System.out.println(sauceLocation);
 
         assertEquals(bunLocation, sauceLocation, 50);
     }
 
+    @DisplayName("Переход из раздела Соусы в Начинки. Успешно")
+    @Description("Проверяет, что успешно выполняется переход из раздела Соусы к разделу Начинки, отображаются ингредиенты раздела")
     @Test
     public void switchFromSauceToFillingTab() {
         mainPage.open();

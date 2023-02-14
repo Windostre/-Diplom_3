@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pom_pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -30,6 +31,7 @@ public class ConstructorPage {
     }
 
     /* POM методы */
+    @Step("Перейти на вкладку Булки")
     public void switchToBunTab() {
         ((JavascriptExecutor) driver)
                 .executeScript("arguments[0].scrollIntoView();", driver.findElement(headerBun));
@@ -37,10 +39,12 @@ public class ConstructorPage {
         driver.findElement(bunTab).click();
     }
 
-    public void waitForBunPageDownload() {
+    @Step("Подождать пока загрузиться страница Конструктора")
+    public void waitForConstructorPageDownload() {
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(headerBun));
     }
 
+    @Step("Перейти на вкладку Соусы")
     public void switchToSauceTab() {
         ((JavascriptExecutor) driver)
                 .executeScript("arguments[0].scrollIntoView();", driver.findElement(headerSauce));
@@ -48,6 +52,7 @@ public class ConstructorPage {
         driver.findElement(sauceTab).click();
     }
 
+    @Step("Перейти на вкладку Начинки")
     public void switchToFillingTab() {
         ((JavascriptExecutor) driver)
                 .executeScript("arguments[0].scrollIntoView();", driver.findElement(headerFilling));
@@ -55,14 +60,17 @@ public class ConstructorPage {
         driver.findElement(fillingTab).click();
     }
 
+    @Step("Получить координаты вкладки Начинки")
     public int getFillingLocation() {
         return driver.findElement(headerFilling).getLocation().y;
     }
 
+    @Step("Получить координаты вкладки Булки")
     public int getBunLocation() {
         return driver.findElement(headerBun).getLocation().y;
     }
 
+    @Step("Получить координаты вкладки Соусы")
     public int getSauceLocation() {
         return driver.findElement(headerSauce).getLocation().y;
     }

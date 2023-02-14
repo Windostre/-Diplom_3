@@ -1,5 +1,8 @@
 package site.nomoreparties.stellarburgers.tests.register;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -27,6 +30,7 @@ public class UserRegistrationTests {
     private String password;
     private String accessToken;
 
+    @Step("Выполнить предварительные действия для теста создания пользователя")
     @Before
     public void localSetUp() {
         mainPage = new MainPage(browserRules.getDriver());
@@ -38,6 +42,7 @@ public class UserRegistrationTests {
         password = utils.generateRandomPassword();
     }
 
+    @Step("Выполнить постусловия по удалению тестовых данных")
     @After
     public void localTearDown() throws InterruptedException {
         if (!loginPage.isCurrentPositionLoginPage()) {
@@ -51,6 +56,8 @@ public class UserRegistrationTests {
         profilePage.deleteUserViaApi(accessToken);
     }
 
+    @DisplayName("Создание пользователя через личный кабинет. Успешно")
+    @Description("Проверяет, что при вводе валидных почты, имени и пароля пользователь успешно создан и переходит на страницу авторизации")
     @Test
     public void registerNewUserViaUserProfileSuccess() {
         mainPage.open();
@@ -62,8 +69,10 @@ public class UserRegistrationTests {
         assertTrue(loginPage.isCurrentPositionLoginPage());
     }
 
+    @DisplayName("Создание пользователя через форму авторизации. Успешно")
+    @Description("Проверяет, что при вводе валидных почты, имени и пароля пользователь успешно создан и переходит на страницу авторизации")
     @Test
-    public void registerNewUserSuccess() {
+    public void registerNewUserViaLoginPageSuccess() {
         mainPage.open();
         mainPage.goToLoginPage();
         loginPage.goToRegisterPage();
@@ -73,6 +82,8 @@ public class UserRegistrationTests {
         assertTrue(loginPage.isCurrentPositionLoginPage());
     }
 
+    @DisplayName("Создание пользователя. Пустое имя. Провал")
+    @Description("Проверяет, что при нельзя создать пользователя если не заполнено имя")
     @Test
     public void registerNewUserFailWhenNameIsEmpty() {
         name = "";
@@ -85,6 +96,8 @@ public class UserRegistrationTests {
         assertTrue(registerPage.isCurrentPositionRegisterPage());
     }
 
+    @DisplayName("Создание пользователя. Пустая почта. Провал")
+    @Description("Проверяет, что при нельзя создать пользователя если не заполнена почта")
     @Test
     public void registerNewUserFailWhenEmailIsEmpty() {
         email = "";
@@ -97,6 +110,8 @@ public class UserRegistrationTests {
         assertTrue(registerPage.isCurrentPositionRegisterPage());
     }
 
+    @DisplayName("Создание пользователя. Пустой пароль. Провал")
+    @Description("Проверяет, что при нельзя создать пользователя если не заполнен пароль")
     @Test
     public void registerNewUserFailWhenPasswordIsEmpty() {
         password = "";
@@ -109,6 +124,8 @@ public class UserRegistrationTests {
         assertTrue(registerPage.isCurrentPositionRegisterPage());
     }
 
+    @DisplayName("Создание пользователя. Пароль < 6 символов. Провал")
+    @Description("Проверяет, что при нельзя создать пользователя если не пароль меньше 6 символов, получена ошибка")
     @Test
     public void registerNewUserFailWhenPasswordIsShort() {
         password = utils.generateShortPassword();

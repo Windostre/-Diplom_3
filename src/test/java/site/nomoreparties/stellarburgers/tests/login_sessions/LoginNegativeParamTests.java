@@ -1,5 +1,7 @@
 package site.nomoreparties.stellarburgers.tests.login_sessions;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,6 +56,8 @@ public class LoginNegativeParamTests {
         };
     }
 
+    @DisplayName("Авторизация. Провал")
+    @Description("Проверяет, что не нельзя авторизоваться с невалидным логином и/или паролем")
     @Test
     public void loginFailWhenInvalidDataProvided() {
         MainPage mainPage = new MainPage(browserRules.getDriver());

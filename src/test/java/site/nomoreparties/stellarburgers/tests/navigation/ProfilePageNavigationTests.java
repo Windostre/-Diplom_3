@@ -1,5 +1,8 @@
 package site.nomoreparties.stellarburgers.tests.navigation;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -21,6 +24,7 @@ public class ProfilePageNavigationTests {
     private ProfilePage profilePage;
     private UserData loginData;
 
+    @Step("Выполнить предварительные действия для теста навигации по странице профиля")
     @Before
     public void localSetUp() {
         mainPage = new MainPage(browserRules.getDriver());
@@ -29,6 +33,8 @@ public class ProfilePageNavigationTests {
         loginData = utils.defaultLoginData();
     }
 
+    @DisplayName("Переход из Личного кабинета на Главную страницу. Успешно")
+    @Description("Проверяет, что авторизованный пользователь успешно переходит из личного кабинета на главную страницу")
     @Test
     public void goToHomePageFromProfileSuccess() {
         mainPage.open();
@@ -40,6 +46,8 @@ public class ProfilePageNavigationTests {
         assertTrue(mainPage.isCurrentPositionMainPageAuthorized());
     }
 
+    @DisplayName("Переход из страницы Авторизации на Главную. Успешно")
+    @Description("Проверяет, что неавторизованный пользователь успешно переходит из страницы авторизации на главную страницу")
     @Test
     public void goToHomePageFromLoginPage() {
         mainPage.open();
