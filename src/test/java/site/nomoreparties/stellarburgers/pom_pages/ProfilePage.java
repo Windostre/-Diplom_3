@@ -4,6 +4,10 @@ import io.restassured.http.ContentType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import static io.restassured.RestAssured.given;
 
@@ -45,6 +49,7 @@ public class ProfilePage {
 
     /* POM чеки */
     public boolean isCurrentPositionProfilePage() {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(profileButton));
         try {
             driver.findElement(profileButton);
             return true;
