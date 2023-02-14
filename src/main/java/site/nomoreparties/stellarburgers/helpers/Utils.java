@@ -6,13 +6,13 @@ import site.nomoreparties.stellarburgers.model.UserData;
 import java.util.Random;
 
 public class Utils {
+    public final String DEFAULT_EMAIL = "some_client@mail.com";
+    public final String DEFAULT_PASSWORD = "123456";
     /**
      * Вспомогательльные методы, генерации данных
      */
     Random random = new Random();
     Faker faker = new Faker();
-    public final String DEFAULT_EMAIL = "some_client@mail.com";
-    public final String DEFAULT_PASSWORD = "123456";
 
     public UserData defaultLoginData() {
         return UserData.builder()

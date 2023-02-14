@@ -4,6 +4,10 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 /**
  * Описание главной страницы приложения
@@ -21,11 +25,13 @@ public class MainPage {
     private final By signInButton = By.xpath(".//button[text()='Войти в аккаунт']");
     private final String url = "https://stellarburgers.nomoreparties.site/";
     private final WebDriver driver;
+
     public MainPage(WebDriver driver) {
         this.driver = driver;
     }
 
     /* POM методы */
+    @Step("Открыть главную страницу")
     public void open() {
         driver.get(url);
     }
@@ -37,7 +43,8 @@ public class MainPage {
 
     @Step("Перейти на страницу авторизации")
     public void goToLoginPage() {
-        driver.findElement(signInButton).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(signInButton)).click();
+        //driver.findElement(signInButton).click();
     }
 
     @Step("Перейти на страницу конструктора")

@@ -4,7 +4,6 @@ import org.junit.rules.ExternalResource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
 
@@ -12,9 +11,8 @@ public class BrowserRules extends ExternalResource {
 
     public static final String CHROME = "chrome";
     public static final String YANDEX = "yandex";
-
     private WebDriver driver;
-    private String browser;
+    private final String browser;
 
     public BrowserRules(String browser) {
         this.browser = browser;
@@ -27,7 +25,7 @@ public class BrowserRules extends ExternalResource {
 
     @Override
     protected void before() throws Throwable {
-        if(CHROME.equals(browser)) {
+        if (CHROME.equals(browser)) {
             driver = new ChromeDriver();
         } else if (YANDEX.equals(browser)) {
             ChromeOptions options = new ChromeOptions();

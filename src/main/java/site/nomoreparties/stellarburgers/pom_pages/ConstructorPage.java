@@ -26,6 +26,7 @@ public class ConstructorPage {
     private final By fillingTab = By.xpath("//span[text()='Соусы']");
     //Список ингридиентов
     private final By ingredientsList = By.className("BurgerIngredients_ingredients__1N8v2");
+
     public ConstructorPage(WebDriver driver) {
         this.driver = driver;
     }

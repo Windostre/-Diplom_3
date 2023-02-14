@@ -5,6 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.locators.RelativeLocator;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 /**
  * Описание страницы регистрации пользователя
@@ -27,6 +31,7 @@ public class RegisterPage {
     //Сообщениеоб ошибке
     private final By errorInputMessage = By.xpath(".//*[contains(@class, 'input__error')]");
     private final WebDriver driver;
+
     public RegisterPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -64,6 +69,7 @@ public class RegisterPage {
     /* POM чеки */
     @Step("Проверка. Находится на странице регистрации пользователя")
     public boolean isCurrentPositionRegisterPage() {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(registrationHeader));
         try {
             driver.findElement(registrationHeader);
             return true;

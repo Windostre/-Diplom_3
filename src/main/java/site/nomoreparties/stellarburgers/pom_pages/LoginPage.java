@@ -28,6 +28,7 @@ public class LoginPage {
     //Логотип
     private final By logo = By.xpath(".//div[contains(@class, 'header__logo')]");
     private final WebDriver driver;
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }

@@ -5,10 +5,6 @@ import io.restassured.http.ContentType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 import static io.restassured.RestAssured.given;
 
@@ -25,6 +21,7 @@ public class ProfilePage {
     //Логотип
     private final By logo = By.xpath(".//div[contains(@class, 'header__logo')]");
     private final WebDriver driver;
+
     public ProfilePage(WebDriver driver) {
         this.driver = driver;
     }
@@ -52,7 +49,6 @@ public class ProfilePage {
     /* POM чеки */
     @Step("Проверка. Находится в личном кабинете")
     public boolean isCurrentPositionProfilePage() {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(profileButton));
         try {
             driver.findElement(profileButton);
             return true;
